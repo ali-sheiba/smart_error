@@ -1,0 +1,7 @@
+en:
+  hello: 'Hello World'
+  errors:
+    '1000': 'App Server Error, please contact the admin' # Global Error
+    '1001': 'Unauthorized'
+    '1002': 'Not Found'
+    '1010': 'Model Error'
