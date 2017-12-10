@@ -3,18 +3,20 @@
 module SmartError
   class ModelError < SmartError::BaseError
     def error_code
-      # TODO: Configure Model Error Code
-      1010
+      SmartError.model_error_code
     end
 
     def message
-      # TODO: Configure first or all full messages
-      @error.errors.full_messages.to_sentence
+      case SmartError.model_error_message
+      when :first then @error.errors.full_messages.first
+      when :sentence then @error.errors.full_messages.to_sentence
+      when :last then @error.errors.full_messages.last
+      else @error.errors.full_messages.first
+      end
     end
 
-    # TODO: Show Full Model Errors
     def details
-      {}
+      @error.errors.details
     end
   end
 end

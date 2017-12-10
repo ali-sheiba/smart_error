@@ -21,12 +21,14 @@ module SmartError
     end
 
     def error_url
-      # TODO: Configure BaseURL
-      "/#{error_code || 1000}"
+      SmartError.base_url.to_s + (error_code || 1000).to_s
     end
 
     def full_message
-      [@options[:message].present? ? @options[:message] : message, extra_message].compact.join(': ')
+      [
+        @options[:message].present? ? @options[:message] : message,
+        extra_message
+      ].compact.join(': ')
     end
 
     def extra_message

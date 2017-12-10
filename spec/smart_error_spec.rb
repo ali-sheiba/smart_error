@@ -63,5 +63,47 @@ RSpec.describe SmartError do
     expect(error.to_h).to include(error_code: 1001)
   end
 
-  # TODO : Configuration
+  it 'Show First Model Errors by default' do
+    error = SmartError.handle(ExampleModel.new)
+    expect(error.to_h).to include(message: 'Username is required')
+  end
+
+  describe 'Configuration' do
+    it 'Configure the base url' do
+      url = 'http://localhost/errors/#'
+      SmartError.config { |c| c.base_url = url }
+      error = SmartError.handle(1000)
+      expect(error.to_h).to include(error_url: "#{url}1000")
+    end
+
+    it 'Configure Excption Error Code' do
+      SmartError.config { |c| c.excption_error_code = 1111 }
+      error = SmartError.handle(NoMethodError.new)
+      expect(error.to_h).to include(error_code: 1111)
+    end
+
+    it 'Configure Model Error Code' do
+      SmartError.config { |c| c.model_error_code = 2222 }
+      error = SmartError.handle(ExampleModel.new)
+      expect(error.to_h).to include(error_code: 2222)
+    end
+
+    it 'Configure first messages in case of model_error_message == :first' do
+      SmartError.config { |c| c.model_error_message = :first }
+      error = SmartError.handle(ExampleModel.new)
+      expect(error.to_h).to include(message: 'Username is required')
+    end
+
+    it 'Configure full messages as a sentence if model_error_message == :sentence' do
+      SmartError.config { |c| c.model_error_message = :sentence }
+      error = SmartError.handle(ExampleModel.new)
+      expect(error.to_h).to include(message: 'Username is required and Username is too short')
+    end
+
+    it 'Configure full messages as a sentence if model_error_message == :sentence' do
+      SmartError.config { |c| c.model_error_message = :last }
+      error = SmartError.handle(ExampleModel.new)
+      expect(error.to_h).to include(message: 'Username is too short')
+    end
+  end
 end

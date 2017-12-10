@@ -6,8 +6,7 @@ require 'smart_error'
 class ActiveRecord
   def errors
     OpenStruct.new(
-      full_messages: ['Username is required', 'Username is too short'],
-      first: 'Username is required'
+      full_messages: ['Username is required', 'Username is too short']
     )
   end
 end

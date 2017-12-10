@@ -3,8 +3,7 @@
 module SmartError
   class ExceptionError < SmartError::BaseError
     def error_code
-      # TODO: Configure Excption Error Code
-      1000
+      SmartError.excption_error_code
     end
 
     def message
