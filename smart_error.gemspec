@@ -28,5 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.6'
   spec.add_dependency 'activesupport', '~> 5.1'
-  spec.add_dependency 'i18n', '~> 0.9.1'
+  spec.add_dependency 'i18n', '~> 0.8'
 end
