@@ -7,16 +7,18 @@ module SmartError
     end
 
     def message
-      case SmartError.model_error_message
-      when :first then @error.errors.full_messages.first
-      when :sentence then @error.errors.full_messages.to_sentence
-      when :last then @error.errors.full_messages.last
-      else @error.errors.full_messages.first
-      end
+      action = case SmartError.model_error_message
+               when :first then :first
+               when :sentence then :to_sentence
+               when :last then :last
+               else :first
+               end
+
+      @error.errors.full_messages.send(action)
     end
 
     def details
-      @error.errors.details
+      @error.errors.messages.transform_values(&:to_sentence)
     end
   end
 end

@@ -1,12 +1,13 @@
 # SmartError
 
+[![Ruby Gem](https://img.shields.io/gem/v/smart_error.svg)](https://rubygems.org/gems/opta_sd)
 [![Build Status](https://travis-ci.org/ali-sheiba/smart_error.svg?branch=master)](https://travis-ci.org/ali-sheiba/smart_error)
 
-WIP
+Simple gem that can handle Exceptions, ActiveRecord Errors and Custom Errors and return readable message and error number/code as usable Hash.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application’s Gemfile:
 
 ```ruby
 gem 'smart_error'
@@ -38,4 +39,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Code of Conduct
 
-Everyone interacting in the SmartError project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/ali-sheiba/smart_error/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the SmartError project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/ali-sheiba/smart_error/blob/master/CODE_OF_CONDUCT.md).

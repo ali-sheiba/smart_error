@@ -6,10 +6,13 @@ require 'smart_error'
 class ActiveRecord
   def errors
     OpenStruct.new(
-      full_messages: ['Username is required', 'Username is too short']
+      full_messages: ["Username can't be blank", "First name can't be blank", "Last name can't be blank", "Email can't be blank", 'Email is invalid'],
+      details:  { username: [{ error: :blank }], first_name: [{ error: :blank }], last_name: [{ error: :blank }], email: [{ error: :blank }, { error: :invalid }] },
+      messages: { username: ["can't be blank"], first_name: ["can't be blank"], last_name: ["can't be blank"], email: ["can't be blank", 'is invalid'] }
     )
   end
 end
+
 class ApplicationRecord < ActiveRecord; end
 class ExampleModel < ApplicationRecord; end
 

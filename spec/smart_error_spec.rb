@@ -63,9 +63,15 @@ RSpec.describe SmartError do
     expect(error.to_h).to include(error_code: 1001)
   end
 
-  it 'Show First Model Errors by default' do
+  it 'show First Model Errors by default' do
     error = SmartError.handle(ExampleModel.new)
-    expect(error.to_h).to include(message: 'Username is required')
+    expect(error.to_h).to include(message: 'Username can\'t be blank')
+  end
+
+  it 'show Model Error details by invalid keys and messages and convert messages to sentence' do
+    error = SmartError.handle(ExampleModel.new)
+    expect(error.to_h[:details]).to include(username: 'can\'t be blank')
+    expect(error.to_h[:details]).to include(email: 'can\'t be blank and is invalid')
   end
 
   describe 'Configuration' do
@@ -91,19 +97,19 @@ RSpec.describe SmartError do
     it 'Configure first messages in case of model_error_message == :first' do
       SmartError.config { |c| c.model_error_message = :first }
       error = SmartError.handle(ExampleModel.new)
-      expect(error.to_h).to include(message: 'Username is required')
+      expect(error.to_h).to include(message: 'Username can\'t be blank')
     end
 
     it 'Configure full messages as a sentence if model_error_message == :sentence' do
       SmartError.config { |c| c.model_error_message = :sentence }
       error = SmartError.handle(ExampleModel.new)
-      expect(error.to_h).to include(message: 'Username is required and Username is too short')
+      expect(error.to_h).to include(message: 'Username can\'t be blank, First name can\'t be blank, Last name can\'t be blank, Email can\'t be blank, and Email is invalid')
     end
 
     it 'Configure full messages as a sentence if model_error_message == :sentence' do
       SmartError.config { |c| c.model_error_message = :last }
       error = SmartError.handle(ExampleModel.new)
-      expect(error.to_h).to include(message: 'Username is too short')
+      expect(error.to_h).to include(message: 'Email is invalid')
     end
   end
 end
