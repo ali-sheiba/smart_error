@@ -91,7 +91,7 @@ Style/MethodCallWithArgsParentheses:
   Description: 'Use parentheses for method calls with arguments.'
   StyleGuide: '#method-invocation-parens'
   EnforcedStyle: require_parentheses
-  Enabled: true
+  Enabled: false
   Exclude:
     - '**/*.gemfile'
     - '**/Gemfile'
