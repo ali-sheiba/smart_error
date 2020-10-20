@@ -1,0 +1,120 @@
+# Usage: rubocop -a app/controllers/run/on/specific/file
+require:
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 2.7.1
+  Exclude:
+    - 'bin/**/*'
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 120
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Layout/SpaceInLambdaLiteral:
+  Enabled: true
+
+Layout/DotPosition:
+  Description: 'Checks the position of the dot in multi-line method calls.'
+  StyleGuide: '#consistent-multi-line-chains'
+  Enabled: true
+  EnforcedStyle: trailing
+
+Lint/Void:
+  Enabled: false
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: false
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Style/CaseLikeIf:
+  Description: 'This cop identifies places where `if-elsif` constructions can be replaced with `case-when`.'
+  StyleGuide: '#case-vs-if-else'
+  Enabled: true
+
+Style/EmptyCaseCondition:
+  Description: 'Avoid empty condition in case statements.'
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: true
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+Style/HashSyntax:
+  Enabled: true
+
+Style/RedundantSelf:
+  Description: "Don't use self where it's not needed."
+  StyleGuide: '#no-self-unless-required'
+  Enabled: false
+
+Style/MethodCallWithArgsParentheses:
+  Description: 'Use parentheses for method calls with arguments.'
+  StyleGuide: '#method-invocation-parens'
+  EnforcedStyle: require_parentheses
+  Enabled: true
+  Exclude:
+    - '**/*.gemfile'
+    - '**/Gemfile'
+    - '**/presenters/*.rb'
+    - '**/spec/*'
+
+
+Style:
+  BlockDelimiters:
+    EnforcedStyle: semantic
+
+  Style/Documentation:
+    Description: 'Document classes and non-namespace modules.'
+    Enabled: false
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/ClassLength:
+  Max: 1500
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/BlockLength:
+  Max: 70

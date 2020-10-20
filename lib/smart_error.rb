@@ -29,7 +29,7 @@ module SmartError
     elsif error.is_a?(ApplicationRecord) || error.is_a?(ActiveRecord)
       SmartError::ModelError.new(error, options)
     else
-      SmartError::CustomeError.new(1000, options)
+      SmartError::CustomError.new(1000, options)
     end
   end
 
