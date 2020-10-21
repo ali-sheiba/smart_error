@@ -22,14 +22,15 @@ module SmartError
   @@model_error_message = :first
 
   def self.handle(error, options = nil)
-    if error.is_a?(Integer)
+    case error
+    when Integer
       SmartError::CustomError.new(error, options)
-    elsif error.is_a?(Exception)
+    when Exception
       SmartError::ExceptionError.new(error, options)
-    elsif error.is_a?(ApplicationRecord) || error.is_a?(ActiveRecord)
+    when ApplicationRecord, ActiveRecord
       SmartError::ModelError.new(error, options)
     else
-      SmartError::CustomeError.new(1000, options)
+      SmartError::CustomError.new(1000, options)
     end
   end
 

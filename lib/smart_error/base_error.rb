@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 
 module SmartError
-  # THe Base Class of Errors
+  # The Base Class of Errors
   class BaseError
     def initialize(error, options = {})
       @error   = error
       @options = options&.symbolize_keys! || {}
     end
 
-    def message
+    # :nocov:
+    def not_implemented
       raise NotImplementedError
     end
 
-    def error_code
-      raise NotImplementedError
-    end
+    alias message not_implemented
+    alias error_code not_implemented
+    # :nocov:
 
     def details
       {}
